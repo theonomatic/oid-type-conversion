@@ -6,6 +6,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+    mapping-resources: "Jsonb.hbm.xml"
 axon:
   axon server:
     enabled: false
+  serializer:
+    general: jackson
