@@ -1,14 +1,26 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/simple-postgres
-    username: user
-    password: password
+    url: jdbc:postgresql://localhost/bourk?user=sa&password=Pass@word
+    driver-class-name: org.postgresql.Driver
   jpa:
+    show-sql: true
+#    properties:
+#      dialect: com.example.oidtypeconversion.ByteaSQLDialect
+#      hibernate:
+#        format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: create-drop
     mapping-resources: "Jsonb.hbm.xml"
+
 axon:
   axon server:
     enabled: false
   serializer:
+    events: jackson
     general: jackson
+    messages: jackson
+server:
+  port: 7777
+logging:
+  level:
+    root: info

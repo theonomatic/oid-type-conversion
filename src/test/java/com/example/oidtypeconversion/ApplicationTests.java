@@ -28,10 +28,10 @@ class ApplicationTests {
         String sql = "SELECT payload FROM domain_event_entry";
         jdbcTemplate.query(sql, rs -> {
             String columnType = rs.getMetaData().getColumnTypeName(1);
-            assertThat(columnType).isEqualToIgnoringCase("jsonb");
+            assertThat(columnType).isEqualToIgnoringCase("bytea");
 
-            String value = rs.getString(1);
-            String expected = "{\"id\": \"test\"}";
+            var value = new String(rs.getBytes(1));
+            String expected = "{\"id\":\"test\"}";
             assertThat(value).isEqualTo(expected);
         });
     }
