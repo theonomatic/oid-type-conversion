@@ -5,7 +5,7 @@
 
 <hibernate-mapping package="org.axonframework.eventsourcing.eventstore.jpa" default-access="field">
 
-    <typedef class="com.example.oidtypeconversion.JsonStringUserType" name="JsonUserType"/>
+    <typedef class="com.example.oidtypeconversion.JsonUserType" name="JsonUserType"/>
 
     <class name="DomainEventEntry">
         <id name="globalIndex">
@@ -19,7 +19,12 @@
         <property name="payloadType" not-null="true"/>
         <property name="payloadRevision"/>
 
-        <property name="payload" type="com.example.oidtypeconversion.ByteaUserType" not-null="true"/>
-        <property name="metaData" type="com.example.oidtypeconversion.ByteaUserType"/>
+        <property name="payload" type="JsonUserType" not-null="true">
+            <column name="payload" sql-type="jsonb"/>
+        </property>
+        <property name="metaData" type="JsonUserType">
+            <column name="metaData" sql-type="jsonb"/>
+        </property>
     </class>
+
 </hibernate-mapping>

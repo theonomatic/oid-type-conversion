@@ -19,7 +19,25 @@ class ApplicationTests {
     private JdbcTemplate jdbcTemplate;
 
     @Test
-    void it_should_store_payload_as_jsonb() {
+    void it_should_store_payload_as_oid() {
+        // When
+        SimpleCommand simpleCommand = new SimpleCommand("test");
+        commandGateway.sendAndWait(simpleCommand);
+
+        // Then
+        String sql = "SELECT payload FROM domain_event_entry";
+        jdbcTemplate.query(sql, rs -> {
+            String columnType = rs.getMetaData().getColumnTypeName(1);
+            assertThat(columnType).isEqualToIgnoringCase("oid");
+
+            var value = new String(rs.getBytes(1));
+            String expected = "{\"id\": \"test\"}";
+            assertThat(value).isEqualTo(expected);
+        });
+    }
+
+    @Test
+    void it_should_store_payload_as_bytea() {
         // When
         SimpleCommand simpleCommand = new SimpleCommand("test");
         commandGateway.sendAndWait(simpleCommand);
@@ -31,7 +49,25 @@ class ApplicationTests {
             assertThat(columnType).isEqualToIgnoringCase("bytea");
 
             var value = new String(rs.getBytes(1));
-            String expected = "{\"id\":\"test\"}";
+            String expected = "{\"id\": \"test\"}";
+            assertThat(value).isEqualTo(expected);
+        });
+    }
+
+    @Test
+    void it_should_store_payload_as_jsonb() {
+        // When
+        SimpleCommand simpleCommand = new SimpleCommand("test");
+        commandGateway.sendAndWait(simpleCommand);
+
+        // Then
+        String sql = "SELECT payload FROM domain_event_entry";
+        jdbcTemplate.query(sql, rs -> {
+            String columnType = rs.getMetaData().getColumnTypeName(1);
+            assertThat(columnType).isEqualToIgnoringCase("jsonb");
+
+            var value = new String(rs.getBytes(1));
+            String expected = "{\"id\": \"test\"}";
             assertThat(value).isEqualTo(expected);
         });
     }

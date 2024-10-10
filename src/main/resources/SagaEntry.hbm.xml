@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 10, 2024, 12:07:02 PM by Hibernate Tools 7.0.0-SNAPSHOT --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="SagaEntry" optimistic-lock="none" schema="public" table="saga_entry">
+        <id name="sagaId" type="string">
+            <column length="255" name="saga_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="revision" type="string">
+            <column length="255" name="revision"/>
+        </property>
+        <property name="sagaType" type="string">
+            <column length="255" name="saga_type"/>
+        </property>
+        <property name="serializedSaga" type="binary">
+            <column name="serialized_saga"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "https://raw.githubusercontent.com/hibernate/hibernate.org/2a6d8d6e62c6f1ddc8e570996bd356290262c30d/hibernate-reverse-engineering-3.0.dtd" >
+<hibernate-reverse-engineering>
+<!--    <schema-selection match-schema="bourk"/>-->
+<!--    <table-filter match-catalog=".*" match-schema="public" match-name="some_test"/>-->
+    <table-filter match-name="domain_event_entry"/>
+    <table-filter match-name="dead_letter_entry"/>
+    <table-filter match-name="saga_entry"/>
+    <table-filter match-name="snapshot_event_entry"/>
+    <table-filter match-name="token_entry"/>
+</hibernate-reverse-engineering>

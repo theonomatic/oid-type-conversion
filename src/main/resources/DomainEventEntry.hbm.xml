@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 10, 2024, 12:07:02 PM by Hibernate Tools 7.0.0-SNAPSHOT --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="DomainEventEntry" optimistic-lock="none" schema="public" table="domain_event_entry">
+        <id name="globalIndex" type="long">
+            <column name="global_index"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="sequenceNumber" type="long">
+            <column name="sequence_number" not-null="true"/>
+        </property>
+        <property name="aggregateIdentifier" type="string">
+            <column length="255" name="aggregate_identifier" not-null="true"/>
+        </property>
+        <property name="eventIdentifier" type="string">
+            <column length="255" name="event_identifier" not-null="true" unique="true"/>
+        </property>
+        <property name="payloadRevision" type="string">
+            <column length="255" name="payload_revision"/>
+        </property>
+        <property name="payloadType" type="string">
+            <column length="255" name="payload_type" not-null="true"/>
+        </property>
+        <property name="timeStamp" type="string">
+            <column length="255" name="time_stamp" not-null="true"/>
+        </property>
+        <property name="type" type="string">
+            <column length="255" name="type"/>
+        </property>
+        <property name="metaData" type="binary">
+            <column name="meta_data"/>
+        </property>
+        <property name="payload" type="binary">
+            <column name="payload" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

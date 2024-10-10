@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 10, 2024, 12:07:02 PM by Hibernate Tools 7.0.0-SNAPSHOT --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="TokenEntry" schema="public" table="token_entry">
+        <composite-id class="TokenEntryId" name="id">
+            <key-property name="processorName" type="string">
+                <column length="255" name="processor_name"/>
+            </key-property>
+            <key-property name="segment" type="int">
+                <column name="segment"/>
+            </key-property>
+        </composite-id>
+        <version name="timestamp" type="string">
+            <column length="255" name="timestamp" not-null="true"/>
+        </version>
+        <property name="owner" type="string">
+            <column length="255" name="owner"/>
+        </property>
+        <property name="tokenType" type="string">
+            <column length="255" name="token_type"/>
+        </property>
+        <property name="token" type="binary">
+            <column name="token"/>
+        </property>
+    </class>
+</hibernate-mapping>

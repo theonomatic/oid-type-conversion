@@ -15,7 +15,47 @@
     <description>oid-type-conversion</description>
     <properties>
         <java.version>21</java.version>
+        <hibernate.version>6.5.3.Final</hibernate.version>
     </properties>
+
+    <build>
+        <plugins>
+            <!-- Hibernate Tools Maven Plugin -->
+            <plugin>
+                <groupId>org.hibernate.tool</groupId>
+                <artifactId>hibernate-tools-maven</artifactId>
+                <version>7.0.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <id>HBM generation</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>generateHbm</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
+                            <!--<templatePath>${project.basedir}/src/main/resources/templates/</templatePath>-->
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <revengFile>${project.basedir}/reveng.xml</revengFile>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.postgresql</groupId>
+                        <artifactId>postgresql</artifactId>
+                        <version>42.7.4</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -49,14 +89,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

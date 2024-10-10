@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.axonframework.modelling.saga.repository.jpa" default-access="field">
+
+    <typedef class="com.example.oidtypeconversion.JsonUserType" name="JsonUserType"/>
+
+    <class name="SagaEntry">
+        <composite-id>
+            <key-property name="sagaId" />
+        </composite-id>
+
+        <property name="sagaType" not-null="true"/>
+        <property name="revision"/>
+
+        <!-- JSONB mappings -->
+        <property name="serializedSaga" type="JsonUserType" not-null="true">
+            <column name="serializedSaga" sql-type="jsonb"/>
+        </property>
+    </class>
+
+</hibernate-mapping>

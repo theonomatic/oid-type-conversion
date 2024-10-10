@@ -1,16 +1,19 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost/bourk?user=sa&password=Pass@word
+    url: jdbc:postgresql://localhost/patate?user=sa&password=Pass@word
     driver-class-name: org.postgresql.Driver
   jpa:
-    show-sql: true
-#    properties:
-#      dialect: com.example.oidtypeconversion.ByteaSQLDialect
-#      hibernate:
-#        format_sql: true
     hibernate:
-      ddl-auto: create-drop
-    mapping-resources: "Jsonb.hbm.xml"
+      ddl-auto: create
+    mapping-resources:
+      - "axon/DeadLetterEventEntry.hbm.xml"
+      - "axon/DomainEventEntry.hbm.xml"
+      - "axon/SagaEntry.hbm.xml"
+      - "axon/SnapshotEventEntry.hbm.xml"
+      - "axon/TokenEntry.hbm.xml"
+#    properties:
+#      hibernate:
+#        dialect: com.example.oidtypeconversion.ByteaSQLDialect
 
 axon:
   axon server:

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.axonframework.eventhandling.deadletter.jpa" default-access="field">
+
+    <typedef class="com.example.oidtypeconversion.JsonUserType" name="JsonUserType"/>
+
+    <class name="DeadLetterEventEntry" table="dead_letter_event_entry" mutable="false">
+        <composite-id>
+            <key-property name="aggregateIdentifier"/>
+            <key-property name="sequenceNumber"/>
+        </composite-id>
+
+        <property name="messageType" not-null="true"/>
+        <property name="eventIdentifier" not-null="true"/>
+        <property name="timeStamp" not-null="true"/>
+        <property name="payloadType" not-null="true"/>
+        <property name="payloadRevision"/>
+        <property name="type"/>
+        <property name="tokenType"/>
+
+        <!-- Map payload as jsonb -->
+        <property name="payload" type="JsonUserType" not-null="true">
+            <column name="payload" sql-type="jsonb"/>
+        </property>
+        <property name="metaData" type="JsonUserType">
+            <column name="metaData" sql-type="jsonb"/>
+        </property>
+        <property name="token" type="JsonUserType">
+            <column name="token" sql-type="jsonb"/>
+        </property>
+    </class>
+
+</hibernate-mapping>

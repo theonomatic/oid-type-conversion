@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Oct 10, 2024, 12:07:02 PM by Hibernate Tools 7.0.0-SNAPSHOT --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="DeadLetterEntry" optimistic-lock="none" schema="public" table="dead_letter_entry">
+        <id name="deadLetterId" type="string">
+            <column length="255" name="dead_letter_id"/>
+            <generator class="assigned"/>
+        </id>
+        <property name="enqueuedAt" type="timestamp">
+            <column length="35" name="enqueued_at" not-null="true"/>
+        </property>
+        <property name="lastTouched" type="timestamp">
+            <column length="35" name="last_touched"/>
+        </property>
+        <property name="processingStarted" type="timestamp">
+            <column length="35" name="processing_started"/>
+        </property>
+        <property name="sequenceIndex" type="long">
+            <column name="sequence_index" not-null="true"/>
+        </property>
+        <property name="sequenceNumber" type="java.lang.Long">
+            <column name="sequence_number"/>
+        </property>
+        <property name="causeMessage" type="string">
+            <column length="1023" name="cause_message"/>
+        </property>
+        <property name="aggregateIdentifier" type="string">
+            <column length="255" name="aggregate_identifier"/>
+        </property>
+        <property name="causeType" type="string">
+            <column length="255" name="cause_type"/>
+        </property>
+        <property name="eventIdentifier" type="string">
+            <column length="255" name="event_identifier" not-null="true"/>
+        </property>
+        <property name="messageType" type="string">
+            <column length="255" name="message_type" not-null="true"/>
+        </property>
+        <property name="payloadRevision" type="string">
+            <column length="255" name="payload_revision"/>
+        </property>
+        <property name="payloadType" type="string">
+            <column length="255" name="payload_type" not-null="true"/>
+        </property>
+        <property name="processingGroup" type="string">
+            <column length="255" name="processing_group" not-null="true"/>
+        </property>
+        <property name="sequenceIdentifier" type="string">
+            <column length="255" name="sequence_identifier" not-null="true"/>
+        </property>
+        <property name="timeStamp" type="string">
+            <column length="255" name="time_stamp" not-null="true"/>
+        </property>
+        <property name="tokenType" type="string">
+            <column length="255" name="token_type"/>
+        </property>
+        <property name="type" type="string">
+            <column length="255" name="type"/>
+        </property>
+        <property name="diagnostics" type="binary">
+            <column name="diagnostics"/>
+        </property>
+        <property name="metaData" type="binary">
+            <column name="meta_data"/>
+        </property>
+        <property name="payload" type="binary">
+            <column name="payload" not-null="true"/>
+        </property>
+        <property name="token" type="binary">
+            <column name="token"/>
+        </property>
+    </class>
+</hibernate-mapping>

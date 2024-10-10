@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="org.axonframework.eventsourcing.eventstore.jpa" default-access="field">
+
+    <typedef class="com.example.oidtypeconversion.JsonUserType" name="JsonUserType"/>
+
+    <class name="SnapshotEventEntry">
+        <composite-id>
+            <key-property name="aggregateIdentifier"/>
+            <key-property name="sequenceNumber" />
+            <key-property name="type" />
+        </composite-id>
+
+        <property name="eventIdentifier" unique="true" not-null="true"/>
+        <property name="timeStamp" not-null="true"/>
+        <property name="payloadType" not-null="true"/>
+        <property name="payloadRevision"/>
+
+        <!-- Mapping jsonb columns -->
+        <property name="payload" type="JsonUserType" not-null="true">
+            <column name="payload" sql-type="jsonb"/>
+        </property>
+        <property name="metaData" type="JsonUserType">
+            <column name="metaData" sql-type="jsonb"/>
+        </property>
+    </class>
+
+</hibernate-mapping>
