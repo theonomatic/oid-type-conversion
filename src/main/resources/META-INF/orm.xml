@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm
+                 https://jakarta.ee/xml/ns/persistence/orm_3_0.xsd"
+                 version="3.0">
+
+    <!-- Mapping for DomainEventEntry class -->
+    <entity class="org.axonframework.eventsourcing.eventstore.jpa.DomainEventEntry" access="FIELD">
+        <attributes>
+            <id name="globalIndex">
+                <generated-value strategy="AUTO"/>
+            </id>
+
+            <basic name="type"/>
+            <basic name="aggregateIdentifier">
+                <column unique="true" nullable="false"/>
+            </basic>
+            <basic name="sequenceNumber">
+                <column unique="true" nullable="false"/>
+            </basic>
+            <basic name="eventIdentifier">
+                <column unique="true" nullable="false"/>
+            </basic>
+            <basic name="timeStamp">
+                <column nullable="false"/>
+            </basic>
+            <basic name="payloadType">
+                <column nullable="false"/>
+            </basic>
+            <basic name="payloadRevision"/>
+
+            <!-- JSONB overrides -->
+            <basic name="payload">
+                <column column-definition="jsonb" nullable="false"/>
+                <convert converter="com.onomatic.tes.configuration.JsonUserType"/>
+            </basic>
+            <basic name="metaData">
+                <column column-definition="jsonb"/>
+                <convert converter="com.onomatic.tes.configuration.JsonUserType"/>
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

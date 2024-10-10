@@ -6,11 +6,12 @@ spring:
     hibernate:
       ddl-auto: create
     mapping-resources:
-      - "axon/DeadLetterEventEntry.hbm.xml"
-      - "axon/DomainEventEntry.hbm.xml"
-      - "axon/SagaEntry.hbm.xml"
-      - "axon/SnapshotEventEntry.hbm.xml"
-      - "axon/TokenEntry.hbm.xml"
+      - "META-INF/persistence.xml"
+#      - "axon/DeadLetterEventEntry.hbm.xml"
+#      - "axon/DomainEventEntry.hbm.xml"
+#      - "axon/SagaEntry.hbm.xml"
+#      - "axon/SnapshotEventEntry.hbm.xml"
+#      - "axon/TokenEntry.hbm.xml"
 #    properties:
 #      hibernate:
 #        dialect: com.example.oidtypeconversion.ByteaSQLDialect
